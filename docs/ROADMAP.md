@@ -1,42 +1,69 @@
-# open-atomic — Roadmap
+# Roadmap
 
-Status: proposed work order, with no release dates or completion claims. The current `OpenAtomic/` directory is a content-layout mockup. Existing source projects provide research and implementations to evaluate.
+Start with the base, gameplay port and main menu. Finish and release the local game before developing online.
 
-[VISION.md](VISION.md) owns direction; [MILESTONES.md](MILESTONES.md) owns acceptance criteria. Individual tasks, owners, and progress belong in issues and the project board.
+[Discuss the plan](https://github.com/insellium/open-atomic/issues/24). Issue numbers below identify cards; they do not set the work order.
 
-## Work sequence
+## 1. Base, gameplay and main menu (M0–M1)
 
-| Phase | Focus | Milestones |
-| --- | --- | --- |
-| 0. Shared foundation | Agree on scope, initial platforms, evidence, source reuse, and decision process. Prepare comparison scenarios and a backlog with gameplay and main-menu work as equal immediate priorities. | M0 |
-| 1. Gameplay and main menu | Build the agreed text-menu hierarchy alongside a complete local round. Connect local actions as their systems become available; reproduce original mechanics, bots, campaign behavior, timing, and edge cases. Document bugs and deliberate fixes. | M1–M2 |
-| 2. Modding | Implement readable content contracts, validation, shared/per-character audio, authoring tools, and package identity. | M3–M4 |
-| 3. Expanded local play | Extend campaigns and enemies; add scrolling and Wide fields and motorcycle protection while retaining verified classic behavior. | M5 |
-| 4. Release usability | Refine the existing menu and complete languages, adaptable display output, settings, and a distributable local build. | M6 |
-| 5. Online play | Compare network prototypes, record the decision, then deliver lobbies, stable matches, and verified custom-content exchange. | M7–M8 |
+1. [Build the C++20 base](https://github.com/insellium/open-atomic/issues/3) from Egerion and elraro. Choose the useful parts of each and resolve overlapping implementations in one application.
+2. [Port Erwin / mayerwin’s Boom Buds gameplay](https://github.com/insellium/open-atomic/issues/1) to that base: mechanics, game logic, rules and timing.
+3. [Build the main menu](https://github.com/insellium/open-atomic/issues/2) alongside the gameplay port. Launch Botmatch, finish a local round and return to the menu.
 
-Gameplay and main-menu development proceed together from Phase 1. Menu destinations connect progressively: Campaign during original-game coverage, Addons during modding, and Online Start/Join at M8. Playtesting, original-game comparisons, provenance checks, and documentation updates continue through every phase. Early architecture accounts for reproducible simulation and content identity; multiplayer implementation remains the final phase.
+Begin [comparison scenarios and playtests](https://github.com/insellium/open-atomic/issues/4) and [license checks](https://github.com/insellium/open-atomic/issues/5) during integration. Continue both as code and content are added.
 
-## Source work to evaluate
+## 2. Complete the original game (M2)
 
-| Source | Main contribution to investigate |
+- [#6 Original mechanics and bots](https://github.com/insellium/open-atomic/issues/6): all power-ups, extras, player actions and match rules.
+- [#7 Original campaign](https://github.com/insellium/open-atomic/issues/7): CAM playlists, enemies and progression through Single → Campaign.
+- [#8 Original bug fixes](https://github.com/insellium/open-atomic/issues/8): reproduce and document each intentional correction.
+
+Compare these features with the original before moving on to modding and new gameplay features.
+
+## 3. Modding and tools (M3–M4)
+
+- [#9 Stages and schemes](https://github.com/insellium/open-atomic/issues/9).
+- [#10 Character skins](https://github.com/insellium/open-atomic/issues/10).
+- [#11 PNG animations and INI settings](https://github.com/insellium/open-atomic/issues/11).
+- [#12 Sound effects and voices](https://github.com/insellium/open-atomic/issues/12).
+- [#13 Animation editor](https://github.com/insellium/open-atomic/issues/13).
+- [#14 Mod packages and versions](https://github.com/insellium/open-atomic/issues/14).
+
+Creators should be able to make, install and share a stage or skin using the documented formats. Connect the Addons menu as these loaders become available.
+
+## 4. Local additions and release (M5–M6)
+
+- [#15 Custom campaigns and enemies](https://github.com/insellium/open-atomic/issues/15).
+- [#16 Scrolling and Wide maps](https://github.com/insellium/open-atomic/issues/16).
+- [#17 Motorcycles with blast protection](https://github.com/insellium/open-atomic/issues/17).
+- [#18 Language support](https://github.com/insellium/open-atomic/issues/18).
+- [#19 Display and scaling options](https://github.com/insellium/open-atomic/issues/19).
+- [#20 Local release](https://github.com/insellium/open-atomic/issues/20).
+
+Finish local menu destinations and settings. Give testers outside the team a build they can install, play and report problems with.
+
+## 5. Online, last (M7–M8)
+
+- [#21 Choose the network architecture](https://github.com/insellium/open-atomic/issues/21) after testing Ceotom’s proposal and the existing alternatives.
+- [#22 Add online multiplayer](https://github.com/insellium/open-atomic/issues/22), lobbies and matches with up to ten players.
+- [#23 Share custom content](https://github.com/insellium/open-atomic/issues/23) and verify that all players use matching packages.
+
+Start this stage after the local release. Keep the Online menu entries unavailable until their features work.
+
+## Where the work comes from
+
+| Source | Role in open-atomic |
 | --- | --- |
-| Original `BOMBRMAN` | Observable behavior and original data. |
-| Mayerwin / Boom Buds | Gameplay simulation, mechanics, and rules for a native port. |
-| Egerion | Native cross-platform architecture, reverse-engineering evidence, and network prototypes. |
-| Elraro | Cross-platform implementation and reverse-engineering evidence. |
-| Cpinan | Additional implementation and useful verified subsystems. |
-| `ins` archive and FREDIT | Format research, visual corrections, and animation-authoring knowledge. |
+| Egerion and elraro | Parts of the native C++20 base. Choose and integrate components individually where they overlap. |
+| Erwin / mayerwin’s Boom Buds | Mechanics, game logic, rules and gameplay to port to C++20. |
+| Original BOMBRMAN | Reference for behavior, timing, formats and comparisons. |
+| Cpinan and the ins research archive | Additional research and code to consult when needed. |
+| FREDIT | ANI, pivot and offset research, and guidance for the future animation editor. |
 
-No implementation foundation or network prototype has been selected by this roadmap. M0 establishes the reuse plan; M7 establishes the network design.
+The source projects still need component-level review. We have chosen the integration direction; library choices, duplicate implementations and individual ports need decisions as we work.
 
-## Supporting requirements and research
+## Details
 
-| Reference | Owns |
-| --- | --- |
-| [Content notes](research/CONTENT_LAYOUT_DRAFT.md) | Stage/scheme compatibility, three grids, campaigns, motorcycles, skin completeness, audio behavior and event inventory, package proposals, and open content decisions. |
-| [Animation draft](research/ANIMATION_INI_DRAFT.md) | PNG references, sequence steps, separate pivots and offsets, cues, and editor requirements. |
-| [Interface notes](research/INTERFACE_NOTES.md) | Exact menu tree, languages, CRT and widescreen support, scaling and filtering. |
-| [Network proposals](research/NETWORKING_PROPOSALS.md) | Ceotom's proposal, alternative models, and questions for measured comparison. |
+[Milestone checks](MILESTONES.md) · [Menu and display](research/INTERFACE_NOTES.md) · [Content and audio](research/CONTENT_LAYOUT_DRAFT.md) · [Animation format](research/ANIMATION_INI_DRAFT.md) · [Network proposals](research/NETWORKING_PROPOSALS.md)
 
-These notes distinguish requirements, original-file observations, and proposals. Final metadata syntax, library choices, network authority, and motorcycle edge cases still require decisions and validation.
+OpenAtomic/ is a content-layout mockup. The listed features are planned work.
