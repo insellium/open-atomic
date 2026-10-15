@@ -2,8 +2,6 @@
 
 An open-source C++20 reimplementation of Atomic Bomberman (1997).
 
-First we combine Egerion and elraro into one native base, port Erwin / mayerwin’s Boom Buds gameplay to C++20, and build the main menu alongside it. Online is the final stage.
-
 This repository contains the plan and research notes. There is no playable open-atomic build yet.
 
 ## Start here
